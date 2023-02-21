@@ -1,5 +1,7 @@
 package edu.neu.coe.csye7200.asstmd
 
+import edu.neu.coe.csye7200.asstmd
+
 import scala.io.Source
 import scala.util.Try
 
@@ -98,7 +100,7 @@ object Movie extends App {
       * @param w a line of input.
       * @return a Try[Movie]
       */
-    def parse(w: String): Try[Movie] = ??? // TO BE IMPLEMENTED
+    def parse(w: String): Try[Movie] = Try.apply(Movie.apply(w.split(",")))// TO BE IMPLEMENTED
   }
 
   val ingester = new Ingest[Movie]()
@@ -119,10 +121,12 @@ object Movie extends App {
   def elements(list: Seq[String], indices: Int*): List[String] = {
     // Hint: form a new list which is consisted by the elements in list in position indices. Int* means array of Int.
     // 6 points
-    val result: Seq[String] =
-    // TO BE IMPLEMENTED
-    ???
+    val result: Seq[String] = {
+      for(e <- indices) yield list(e)
+    }
+    // TO BE IMPLEMENTE
     result.toList
+
   }
 
   /**
@@ -201,7 +205,10 @@ object Rating {
     */
   // Hint: This should similar to apply method in Object Name. The parameter of apply in case match should be same as case class Rating
   // 13 points
-  def apply(s: String): Rating = ??? // TO BE IMPLEMENTED
+  def apply(s: String): Rating = {
+    if(s.split("-").length == 1) return new Rating(s,None)
+    else return new Rating(s.split("-")(0),Option(s.split("-")(1).toInt))
+  }// TO BE IMPLEMENTED
 
 }
 

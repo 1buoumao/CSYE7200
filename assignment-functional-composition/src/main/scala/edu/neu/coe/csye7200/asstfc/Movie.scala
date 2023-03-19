@@ -130,8 +130,8 @@ object Movie extends App {
     // 5 points
     // TO BE IMPLEMENTED
     import edu.neu.coe.csye7200.asstfc.Movie.MoviesProtocol.movieFormat
-    val Serialization = ms.map(_.toJson.convertTo[Movie])
-    Serialization.equals(ms)
+    val res = ms.map(_.toJson.convertTo[Movie])
+    res.equals(ms)
   }
 
   def getMoviesFromCountry(country: String, movies: Iterator[Try[Movie]]): Try[Seq[Movie]] = {
